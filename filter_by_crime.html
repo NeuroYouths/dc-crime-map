@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DC Crime Map</title>
+	<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+  <script src='https://a.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.js'></script>
+  <script src='jquery.min.js'></script>
+  <link href='https://a.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.css' rel='stylesheet' />
+  <link type="text/css" rel="stylesheet" href="crimestyle.css"/>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:700|Carrois+Gothic' rel='stylesheet' type='text/css'>
+		<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-44399371-1', 'washingtondccrimemap.com');
+	  ga('send', 'pageview');
+
+	</script>
+</head>
+<body>
+<div id="header" ><p align="center">WASHINGTON DC CRIME MAP</p></div>
+<div id="menuBar" align="center">
+	<div id="menuBarLinks">
+	<a href="index.html">Home</a>
+	<a href="about.html">About the data</a>
+	<a href="definitions.html">Crime definitions</a>
+	<a href="crime_charts.html">Interactive crime charts</a>
+	<a href="contact.html">Contact</a>
+	</div>
+</div>
+<table id='map-ui-type'>
+	<tr>
+		<td><a href="index.html">Points</a></td>
+		<td><a href="total_p_100.html">Total per 100</a></td>
+		<td><a href="total_crime.html">Total Crime</a></td>
+		<td><a href="change_by_year.html">Change by Year</a></td>
+		<td class='activePage'><a href="filter_by_crime.html" >Filter by Crime</a></td>
+	</tr>
+</table>
+<script src="dropDown.js" type="text/javascript"></script>
+<ul id="map-ui-fbc">
+    <li><div class="parent">2007</div>    
+        <ul class="children">
+            <li><a href='#' id='sarah.2007-homicides' >Homicide</a></li>
+            <li><a href='#' id='sarah.2007-adw'>ADW</a></li>
+            <li><a href='#' id='sarah.2007-sex-abuse'>Sex Abuse</a></li>
+			<li><a href='#' id='sarah.2007-Robbery'>Robbery</a></li>
+			<li><a href='#' id='sarah.2007-burglary'>Burglary</a></li>
+			<li><a href='#' id='sarah.2007-arson'>Arson</a></li>
+			<li><a href='#' id='sarah.2007-theft-f-auto'>Theft f/Vehicle</a></li>
+			<li><a href='#' id='sarah.2007-theft'>Theft</a></li>
+			<li><a href='#' id='sarah.2007-motor-theft'>Motor Vehicle Theft</a></li>
+        </ul>
+    </li>
+	<li><div class="parent">2008</div>    
+        <ul class="children">
+            <li><a href='#' id='sarah.2008-homicide' >Homicide</a></li>
+            <li><a href='#' id='sarah.2008-ADW'>ADW</a></li>
+            <li><a href='#' id='sarah.2008-sex-abuse'>Sex Abuse</a></li>
+			<li><a href='#' id='sarah.2008-robbery'>Robbery</a></li>
+			<li><a href='#' id='sarah.2008-burglary'>Burglary</a></li>
+			<li><a href='#' id='sarah.2008-arson'>Arson</a></li>
+			<li><a href='#' id='sarah.2008-theft-f-auto'>Theft f/Vehicle</a></li>
+			<li><a href='#' id='sarah.2008-theft-other'>Theft</a></li>
+			<li><a href='#' id='sarah.2008-motor-theft'>Motor Vehicle Theft</a></li>
+        </ul>
+    </li>
+	<li><div class="parent">2009</div>    
+        <ul class="children">
+            <li><a href='#' id='sarah.2009-homicide' >Homicide</a></li>
+            <li><a href='#' id='sarah.2009-adw'>ADW</a></li>
+            <li><a href='#' id='sarah.2009-sex-abuse'>Sex Abuse</a></li>
+			<li><a href='#' id='sarah.2009-robbery'>Robbery</a></li>
+			<li><a href='#' id='sarah.2009-burglary'>Burglary</a></li>
+			<li><a href='#' id='sarah.2009-arson'>Arson</a></li>
+			<li><a href='#' id='sarah.2009-theft-f-auto'>Theft f/Vehicle</a></li>
+			<li><a href='#' id='sarah.2009-theft-other'>Theft</a></li>
+			<li><a href='#' id='sarah.2009-motor-theft'>Motor Vehicle Theft</a></li>
+        </ul>
+    </li>
+	<li><div class="parent">2010</div>    
+        <ul class="children">
+            <li><a href='#' id='sarah.2010-homicide' >Homicide</a></li>
+            <li><a href='#' id='sarah.2010-adw'>ADW</a></li>
+            <li><a href='#' id='sarah.2010-sex-abuse'>Sex Abuse</a></li>
+			<li><a href='#' id='sarah.2010-robbery'>Robbery</a></li>
+			<li><a href='#' id='sarah.2010-burglary'>Burglary</a></li>
+			<li><a href='#' id='sarah.2010-arson'>Arson</a></li>
+			<li><a href='#' id='sarah.2010-theft-f-auto'>Theft f/Vehicle</a></li>
+			<li><a href='#' id='sarah.2010-theft-other'>Theft</a></li>
+			<li><a href='#' id='sarah.2010-motor-theft'>Motor Vehicle Theft</a></li>
+        </ul>
+    </li>
+	
+	<li><div class="parent">2011</div>    
+        <ul class="children">
+            <li><a href='#' id='sarah.2011-homicide' >Homicide</a></li>
+            <li><a href='#' id='sarah.2011-adw'>ADW</a></li>
+            <li><a href='#' id='sarah.2011-sex-abuse'>Sex Abuse</a></li>
+			<li><a href='#' id='sarah.2011-robbery'>Robbery</a></li>
+			<li><a href='#' id='sarah.2011-burglary'>Burglary</a></li>
+			<li><a href='#' id='sarah.2011-arson'>Arson</a></li>
+			<li><a href='#' id='sarah.2011-theft-f-auto'>Theft f/Vehicle</a></li>
+			<li><a href='#' id='sarah.2011-theft-other'>Theft</a></li>
+			<li><a href='#' id='sarah.2011-motor-theft'>Motor Vehicle Theft</a></li>
+        </ul>
+    </li>
+	<li><div class="parent">2012</div>    
+        <ul class="children">
+            <li><a href='#' id='sarah.2012-homicide' >Homicide</a></li>
+            <li><a href='#' id='sarah.2012-adw'>ADW</a></li>
+            <li><a href='#' id='sarah.2012-sex-abuse'>Sex Abuse</a></li>
+			<li><a href='#' id='sarah.2012-robbery'>Robbery</a></li>
+			<li><a href='#' id='sarah.2012-burglary'>Burglary</a></li>
+			<li><a href='#' id='sarah.2012-arson'>Arson</a></li>
+			<li><a href='#' id='sarah.2012-theft-f-auto'>Theft f/Vehicle</a></li>
+			<li><a href='#' id='sarah.2012-theft-other'>Theft</a></li>
+			<li><a href='#' id='sarah.2012-motor-theft'>Motor Vehicle Theft</a></li>
+        </ul>
+    </li>
+	<li><div style="border-right:1px solid #BBB;" class="parent">2013</div>    
+        <ul class="children">
+            <li><a href='#' style="border-top-width: 1px; margin-top: -1px;" id='sarah.2013-homicide' class='active'>Homicide</a></li>
+            <li><a href='#' id='sarah.2013-adw'>ADW</a></li>
+            <li><a href='#' id='sarah.2013-sex-abuse'>Sex Abuse</a></li>
+			<li><a href='#' id='sarah.2013-robbery'>Robbery</a></li>
+			<li><a href='#' id='sarah.2013-burglary'>Burglary</a></li>
+			<li><a href='#' id='sarah.2013-arson'>Arson</a></li>
+			<li><a href='#' id='sarah.2013-theft-f-auto'>Theft f/Vehicle</a></li>
+			<li><a href='#' id='sarah.2013-theft-other'>Theft</a></li>
+			<li><a href='#' id='sarah.2013-motor-theft'>Motor Vehicle Theft</a></li>
+        </ul>
+    </li>
+</ul>
+
+<ul id='map-ui-easing' style="margin-top: 10px;">
+	<li><a id='dc-all' href='#'>DC - All</a></li>
+	<li><a id='columbia-heights' href='#'>Columbia Heights</a></li>
+	<li><a id='trinidad' href='#'>Trinidad</a></li>
+	<li><a id='tenleytown' href='#'>Tenleytown</a></li>
+	<li><a id='barry-farm' href='#'>Barry Farm</a></li>
+</ul>
+<div class="legendVertical" style="margin-top: 10px;"><img src="img/points_legend.png" style="height: 150px; border: 3px solid #fff;"/></div>
+<div id='map_crime'></div>
+<script>
+  var map = mapbox.map('map_crime');
+  var layers = document.getElementById('map-ui-fbc').getElementsByTagName('a');
+
+  // add static baselayer
+  map.addLayer(mapbox.layer().id('sarah.map-tqqzbib7', function() {
+    map.interaction.auto(); 
+  }));
+  //map.interaction.auto();
+
+  for (var i = 0; i < layers.length; i++) {
+      layer = layers[i];
+      map.addLayer(mapbox.layer().id(layer.id, function() {
+          map.interaction.auto(); 
+      }));
+      if (layer.className != 'active') {
+          map.getLayer(layer.id).disable();
+      }
+      layer.onclick = function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          // If the layer that has been clicked on is not already enabled,
+          // enable it and also disable any other active layers in the layerswitcher
+          if (!(map.getLayer(this.id).enabled)) {
+              for (var i = 0; i < layers.length; i++) {
+                  if (map.getLayer(layers[i].id).enabled) {
+                      map.getLayer(layers[i].id).disable();
+                      layers[i].className = '';
+                  }
+              }
+              map.getLayer(this.id).enable();
+              this.className = 'active';
+              map.interaction.refresh();
+          }
+      };
+  }
+  
+  map.zoom(11).center({lat: 38.908,lon: -77.029});
+  map.setZoomRange(11, 16);
+  map.ui.zoomer.add();
+			map.ui.zoombox.add();
+
+    document.getElementById('dc-all').onclick = function() {
+				map.ease.location({ lat: 38.908, lon: -77.029 }).zoom(11).optimal();
+				return false;
+			  }
+  
+  document.getElementById('columbia-heights').onclick = function() {
+				map.ease.location({ lat: 38.929035, lon: -77.031676 }).zoom(15).optimal();
+				return false;
+			  }
+
+			  document.getElementById('trinidad').onclick = function() {
+				map.ease.location({ lat: 38.905762, lon: -76.984941 }).zoom(15).optimal();
+				return false;
+			  }
+
+			  document.getElementById('tenleytown').onclick = function() {
+				map.ease.location({ lat: 38.947194, lon: -77.080127 }).zoom(15).optimal();
+				return false;
+			  }
+			  
+			  document.getElementById('barry-farm').onclick = function() {
+				map.ease.location({ lat: 38.859527, lon: -76.998459 }).zoom(15).optimal();
+				return false;
+			  }
+  
+</script>
+</body>
+</html>

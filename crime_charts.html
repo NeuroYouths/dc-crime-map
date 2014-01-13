@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DC Crime Map</title>
+  <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+  <script src='https://a.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.js'></script>
+  <link href='https://a.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.css' rel='stylesheet' />
+  <link type="text/css" rel="stylesheet" href="crimestyle.css"/>
+   <script src="jquery.min.js"></script>
+   <script src="highcharts.js"></script>
+   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:700|Carrois+Gothic' rel='stylesheet' type='text/css'>
+   		<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-44399371-1', 'washingtondccrimemap.com');
+	  ga('send', 'pageview');
+
+	</script>
+
+</head>
+<body>
+<div id="header" ><p align="center">WASHINGTON DC CRIME MAP</p></div>
+<div id="menuBar" align="center">
+	<div id="menuBarLinks">
+	<a href="index.html">Home</a>
+	<a href="about.html">About the data</a>
+	<a href="definitions.html">Crime definitions</a>
+	<a href="crime_charts.html">Interactive crime charts</a>
+	<a href="contact.html">Contact</a>
+	</div>
+</div>
+
+<script src="highcharts.js"></script>
+<script src="exporting.js"></script>
+
+	<div id="chartsWrapper">
+		<p class="title1" align="center" style="margin-top: -10px;">Crimes Per Month</p>
+		<div id="HCCrimesPerMonth" class="HCcenter"></div>
+		<script src="HCCrimesPerMonth.js"></script>
+		
+		<p class="title1" align="center">Types of Crime Per Year</p>
+		<div id="HCTypesOfCrime" class="HCtall" style="width: 80%; margin-right: 10%; margin-left: 10%;"></div>
+		<script src="HCTypesOfCrime.js"></script>
+		
+		<p class="title1" align="center">Gun Crimes Per Year</p>
+		<div id="HCGunCrimes" class="HCtall" style="width: 80%; margin-right: 10%; margin-left: 10%;"></div>
+		<script src="HCGunCrimes.js"></script>
+		
+		<p class="title1" align="center">Bicycle Thefts Per Month</p>
+		<div id="HCBicycleTheft" class="HCcenter" style="width: 80%; margin-right: 10%; margin-left: 10%;"></div>
+		<script src="HCBicycleTheft.js"></script>
+		<p align="center" style="margin-top: -30px;">Includes data from 2007 - 2010 only; Includes total thefts in each month for all years</p>
+		
+		<p class="title1" align="center">Time of Day</p>
+		<div id="HCTimeOfDay" class="HCcenter" style="width: 50%; margin-right: 25%; margin-left: 25%;"></div>
+		<script src="HCTimeOfDay.js"></script>
+		<p align="center" style="margin-top: -30px;">Early Morning: 12am - 6am, Mid-Morning: 6am-12pm, Afternoon: 12pm - 6pm, Evening: 6pm - 12am</p>
+			
+	</div>
+</body>
+</html>

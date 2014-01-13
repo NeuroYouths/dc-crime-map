@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DC Crime Map</title>
+	<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+  <script src='https://a.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.js'></script>
+  <link href='https://a.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.css' rel='stylesheet' />
+  <link type="text/css" rel="stylesheet" href="crimestyle.css"/>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:700|Carrois+Gothic' rel='stylesheet' type='text/css'>
+			<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-44399371-1', 'washingtondccrimemap.com');
+	  ga('send', 'pageview');
+
+	</script>
+
+</head>
+<body>
+<div id="header" ><p align="center">WASHINGTON DC CRIME MAP</p></div>
+<div id="menuBar" align="center">
+	<div id="menuBarLinks">
+	<a href="index.html">Home</a>
+	<a href="about.html">About the data</a>
+	<a href="definitions.html">Crime definitions</a>
+	<a href="crime_charts.html">Interactive crime charts</a>
+	<a href="contact.html">Contact</a>
+	</div>
+</div>
+
+<div id="definitionsContent">
+
+<p class="title1">About the Data</p>
+
+<p>All crime data is sourced from the Washington DC Metropolitan Police Department's Crime Map website.  You can visit the site and download the data yourself here: <a href="http://crimemap.dc.gov/">crimemap.dc.gov</a><p>
+
+<p>Before discussing my methodology and handling of the data, I must point out the easy-to-overlook concept that what you put in is what you get out.  This data includes only crimes that were reported to MPD, and therefore many crimes are most likely missing from this map.  There is a high chance that certain crimes get reported more often in certain neighborhoods versus others depending on the type of crime, the relationship between the victim and the offender, and the level of trust toward the police.  It is important to keep these points in mind when analyzing the map.</p>
+
+<p>Currently data only includes January through May in the year 2013.  I will update this data at the end of the year to reflect the full year of 2013.</p>
+
+<p class="title1">Notes and Methodology</p>
+
+<p>In order to visualize point data in map form, I used the geographical coordinate data associated with each point to create a <a href='https://en.wikipedia.org/wiki/Shapefile'>shapefile</a>. Data from 2007 - 2010 included X and Y block coordinates which use the Maryland State Plane meters NAD 83 map projection.  Data from 2011 - 2013 included simple latitude and longitude coordinates.  For points which had no associated geographical coordinates, I geocoded their locations using any address information included.  Any points that included no geographical coordinate data and no address data were deleted.  This included ~40 data points.</p>
+
+<p>Points often overlap due to imprecise geographic information.  The location is usually generalized to a certain block of a street rather than giving the exact location, and thus any crime points on that block overlap.  I have styled the points to be partially transparent so that the user can see if there are points below, though they will not be able to hover over that point to get more details as it is covered by another point.  That said, data quality varies from year to year.  Some years have more specific geographic data, giving the appearance that crime increased that year. This is due to the points being more spread out to their precise locations, rather than being lumped on top of one another at the center of the block.</p>
+
+<p>Other parts of data vary in quality by year as well.  I decided to include the "Type" or "Method" attribute in all years for any applicable crimes, despite the fact that in some years (2012 specifically) it seems that this column was mostly populated by "Other(s)" rather than giving the actual method attribute.</p>
+
+<p>Time of day data was provided only in data from 2011 - 2013.</p>
+
+<p>For the chloropleth maps, statistics were gathered by overlaying the point data with census block data and tacking the block number to each crime.  This allowed me to aggregate data associated with each census tract. In the map showing total crime per 100 people per census tract, I used the total population per census tract according to the 2010 Census, which renders numbers not in year 2010 slightly inaccurate.</p>
+
+<p class="title1">Notes on the Maps</p>
+
+<p>Maps were made using <a href="http://www.mapbox.com/tilemill/">TileMill</a> styling software, are hosted on <a href="http://www.mapbox.com">MapBox</a>, and are embedded on this website using the <a href="http://www.mapbox.com/mapbox.js/api/v1.3.1/">MapBox API</a> (version 0.6.7).
+
+<p>There is at least one known error in the map functionality.  If a user clicks on a crime incident point, the tool tips box will become static, which is the intended result.  However, when the user tries to exit the tooltips display box, he or she must click several times before the box disappears. This is an error that I am looking into.  I hope that this does not impede the usefulness of the map for the users too much at this time.</p>
+
+
+</div>
+
+</body>
+</html>

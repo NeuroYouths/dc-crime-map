@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DC Crime Map</title>
+	<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+  <script src='https://a.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.js'></script>
+  <link href='https://a.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.css' rel='stylesheet' />
+  <link type="text/css" rel="stylesheet" href="crimestyle.css"/>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:700|Carrois+Gothic' rel='stylesheet' type='text/css'>
+		<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-44399371-1', 'washingtondccrimemap.com');
+	  ga('send', 'pageview');
+
+	</script>
+</head>
+<body>
+<div id="header" ><p align="center">WASHINGTON DC CRIME MAP</p></div>
+<div id="menuBar" align="center">
+	<div id="menuBarLinks">
+	<a href="index.html">Home</a>
+	<a href="about.html">About the data</a>
+	<a href="definitions.html">Crime definitions</a>
+	<a href="crime_charts.html">Interactive crime charts</a>
+	<a href="contact.html">Contact</a>
+	</div>
+</div>
+<table id='map-ui-type'>
+	<tr>
+		<td class='activePage' ><a href="index.html"  >Points</a></td>
+		<td><a href="total_p_100.html">Total per 100</a></td>
+		<td><a href="total_crime.html">Total Crime</a></td>
+		<td><a href="change_by_year.html">Change by Year</a></td>
+		<td><a href="filter_by_crime.html" >Filter by Crime</a></td>
+	</tr>
+</table>
+<ul id='map-ui'>
+  <li><a href='#' id='sarah.map-kzsohm1n'>2007</a></li>
+  <li><a href='#' id='sarah.map-z9l1quvn'>2008</a></li>
+  <li><a href='#' id='sarah.map-8gatlc61'>2009</a></li>
+  <li><a href='#' id='sarah.map-ojuonmbl'>2010</a></li>
+  <li><a href='#' id='sarah.map-cuel3xt8'>2011</a></li>
+  <li><a href='#' id='sarah.map-2dvzzagb'>2012</a></li>
+  <li><a href='#' id='sarah.map-neqi1tl7' class='active'>2013</a></li>
+</ul>
+<ul id='map-ui-easing'>
+	<li><a id='dc-all' href='#'>DC - All</a></li>
+	<li><a id='columbia-heights' href='#'>Columbia Heights</a></li>
+	<li><a id='trinidad' href='#'>Trinidad</a></li>
+	<li><a id='tenleytown' href='#'>Tenleytown</a></li>
+	<li><a id='barry-farm' href='#'>Barry Farm</a></li>
+</ul>
+<div class="legendVertical"><img src="img/points_legend.png" style="height: 150px; border: 3px solid #fff;"/></div>
+<div id='map_crime'></div>
+<script>
+  var map = mapbox.map('map_crime');
+  var layers = document.getElementById('map-ui').getElementsByTagName('a');
+
+  // add static baselayer
+  map.addLayer(mapbox.layer().id('sarah.map-tqqzbib7', function() {
+    map.interaction.auto(); 
+  }));
+  //map.interaction.auto();
+
+  for (var i = 0; i < layers.length; i++) {
+      layer = layers[i];
+      map.addLayer(mapbox.layer().id(layer.id, function() {
+          map.interaction.auto(); 
+      }));
+      if (layer.className != 'active') {
+          map.getLayer(layer.id).disable();
+      }
+      layer.onclick = function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          // If the layer that has been clicked on is not already enabled,
+          // enable it and also disable any other active layers in the layerswitcher
+          if (!(map.getLayer(this.id).enabled)) {
+              for (var i = 0; i < layers.length; i++) {
+                  if (map.getLayer(layers[i].id).enabled) {
+                      map.getLayer(layers[i].id).disable();
+                      layers[i].className = '';
+                  }
+              }
+              map.getLayer(this.id).enable();
+              this.className = 'active';
+              map.interaction.refresh();
+          }
+      };
+  }
+  
+  map.zoom(11).center({lat: 38.908,lon: -77.029});
+  map.setZoomRange(11, 16);
+  map.ui.zoomer.add();
+			map.ui.zoombox.add();
+
+    document.getElementById('dc-all').onclick = function() {
+				map.ease.location({ lat: 38.908, lon: -77.029 }).zoom(11).optimal();
+				return false;
+			  }
+  
+  document.getElementById('columbia-heights').onclick = function() {
+				map.ease.location({ lat: 38.929035, lon: -77.031676 }).zoom(15).optimal();
+				return false;
+			  }
+
+			  document.getElementById('trinidad').onclick = function() {
+				map.ease.location({ lat: 38.905762, lon: -76.984941 }).zoom(15).optimal();
+				return false;
+			  }
+
+			  document.getElementById('tenleytown').onclick = function() {
+				map.ease.location({ lat: 38.947194, lon: -77.080127 }).zoom(15).optimal();
+				return false;
+			  }
+			  
+			  document.getElementById('barry-farm').onclick = function() {
+				map.ease.location({ lat: 38.859527, lon: -76.998459 }).zoom(15).optimal();
+				return false;
+			  }
+  
+</script>
+</body>
+</html>
