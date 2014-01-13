@@ -1,0 +1,1 @@
+I developed this DC Crime Map website using open source crime point data from DC Metropolitan Police Department and Census data.  I processed this data using ArcGIS, QGIS, and Excel, and then built out the website washingtondccrimemap.com using the MapBox API and HighCharts API, allowing users to explore crime levels and demographic information in their neighborhoods. 
