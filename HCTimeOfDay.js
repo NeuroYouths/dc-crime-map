@@ -59,19 +59,19 @@ $(function () {
                 series: [{
                 name: 'Evening',
                 color: '#9159D4',    
-                data: [11650,11362,4585]
+                data: [11650,11362,9851]
             }, {
                 name: 'Afternoon',
                 color: '#5698D0',
-                data: [10798,11441,4277]
+                data: [10798,11441,12199]
             },{
                 name: 'Mid-Morning',
                 color: '#4BCACA',
-                data: [7662,9014,3198]
+                data: [7662,9014,8267]
             },{
                 name: 'Early Morning',
                 color: '#1FC42A',
-                data: [3725,3401,1208]
+                data: [3725,3401,4539]
             }]
         });
     });
